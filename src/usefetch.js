@@ -24,8 +24,14 @@ const useFetch = (url) => {
             setError(null);
         })
         .catch(err => {
-            setisPending(false);
-            setError(err.message);
+            if (err.name === 'AbortError') {
+                console.log("fentch aborted")
+            }
+            else
+            {
+                setisPending(false);
+                setError(err.message);
+            }
         });
         }, 1000);
 
